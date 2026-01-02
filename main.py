@@ -13,7 +13,7 @@ TOKEN = '8570666490:AAHkzva23guJaWJRn2bUoV2ahI54T9PAtGs'
 DOMAIN = 'https://royalspin.wuaze.com'  
 CHANNEL_LINK = 'https://t.me/afro_game' 
 SUPPORT_USER = 'https://t.me/afro_game' 
-BANNER_IMG = "https://gemini.google.com/share/9783d8a6f35a"
+BANNER_IMG = "https://gemini.google.com/share/959f168fa0d5"
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
