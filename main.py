@@ -13,7 +13,7 @@ TOKEN = '8570666490:AAHkzva23guJaWJRn2bUoV2ahI54T9PAtGs'
 DOMAIN = 'https://royalspin.wuaze.com'  
 CHANNEL_LINK = 'https://t.me/afro_game' 
 SUPPORT_USER = 'https://t.me/afro_game' 
-BANNER_IMG = "https://img.freepik.com/free-vector/casino-games-design_1212-368.jpg"
+BANNER_IMG = "https://gemini.google.com/share/5537b2652ff2"
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
@@ -94,3 +94,4 @@ if __name__ == "__main__":
     
     print("✅ Production Bot Started...")
     bot.infinity_polling()
+
