@@ -1,5 +1,6 @@
 import telebot
 import os
+import time
 import threading
 import urllib.parse
 from flask import Flask
@@ -13,7 +14,7 @@ TOKEN = '8570666490:AAHkzva23guJaWJRn2bUoV2ahI54T9PAtGs'
 DOMAIN = 'https://royalspin.wuaze.com'  
 CHANNEL_LINK = 'https://t.me/afro_game' 
 SUPPORT_USER = 'https://t.me/afro_game' 
-BANNER_IMG = "https://gemini.google.com/share/959f168fa0d5"
+BANNER_IMG = "https://gemini.google.com/share/5969cb332c1f"
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
@@ -21,7 +22,7 @@ app = Flask(__name__)
 # --- WEB SERVER ---
 @app.route('/')
 def home():
-    return "🔥 AFRO GAMES BOT IS RUNNING! (Production Mode) 🔥"
+    return "🔥 AFRO GAMES BOT IS RUNNING! 🔥"
 
 def run_web():
     port = int(os.environ.get('PORT', 8080))
@@ -36,7 +37,7 @@ def get_wallet_url(user_id):
     return f"{DOMAIN}/wallet.php?tg_id={user_id}"
 
 # ==========================================
-# 🔥 PRO DESIGN HANDLERS
+# 🔥 HANDLERS
 # ==========================================
 
 @bot.message_handler(commands=['start'])
@@ -85,13 +86,14 @@ def send_main_menu(message):
 
 # --- START ---
 if __name__ == "__main__":
-    # Web Server ማስጀመር
     t = threading.Thread(target=run_web)
     t.start()
     
-    print("✅ Removing old webhooks...")
-    # 🔥 ይህ በጣም ወሳኝ ነው! የድሮውን Webhook በግድ ያጠፋዋል 🔥
-    bot.delete_webhook()
-    
-    print("✅ Production Bot Started...")
-    bot.infinity_polling()
+    print("✅ Stopping any previous instances...")
+    # ይህ መስመር የድሮውን Webhook እና Pending Updates ያጸዳል
+    bot.delete_webhook(drop_pending_updates=True)
+    time.sleep(1) # ለ 1 ሰከንድ እረፍት (Cleanup time)
+
+    print("✅ Bot Started Successfully!")
+    # infinity_polling ከተቋረጠ በራሱ እንዲነሳ (restart) ያደርገዋል
+    bot.infinity_polling(timeout=10, long_polling_timeout=5)
