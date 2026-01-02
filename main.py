@@ -15,7 +15,7 @@ BANNER_IMG = "https://gemini.google.com/share/508fab1dec30"
 
 # Render የሚሰጠው የራስህ የቦት ሊንክ (አንተ መቀየር አለብህ!)
 # ምሳሌ: https://afro-bot.onrender.com (የ Render ዳሽቦርድ ላይ ታገኘዋለህ)
-WEBHOOK_URL_BASE = "https://YOUR-RENDER-APP-NAME.onrender.com" 
+WEBHOOK_URL_BASE = "https://afro-bot.onrender.com" 
 WEBHOOK_URL_PATH = "/%s/" % (TOKEN)
 
 bot = telebot.TeleBot(TOKEN)
@@ -91,3 +91,4 @@ if __name__ == "__main__":
     from waitress import serve
     port = int(os.environ.get('PORT', 8080))
     serve(app, host="0.0.0.0", port=port)
+
