@@ -11,7 +11,6 @@ TOKEN = '8570666490:AAH08os9NH0oBwYPFaZ49kVEY6e56lTn7hk'
 DOMAIN = 'https://royalspin.wuaze.com' 
 CHANNEL_LINK = 'https://t.me/afro_game'
 SUPPORT_USER = 'https://t.me/afro_game'
-# ለሽፋን የሚሆን ማራኪ ፎቶ (Banner)
 BANNER_IMG = "https://gemini.google.com/share/508fab1dec30" 
 
 # Render URL
@@ -40,29 +39,25 @@ def webhook():
 def get_game_url(user_id, name, phone):
     import urllib.parse
     safe_name = urllib.parse.quote(name)
-    # ስልክ ቁጥር፣ ስም እና ID አያይዞ ይልካል
     return f"{DOMAIN}/index.php?tg_id={user_id}&name={safe_name}&phone={phone}"
 
 def get_wallet_url(user_id):
     return f"{DOMAIN}/wallet.php?tg_id={user_id}"
 
 # ==========================================
-# 🔥 HANDLERS (መልዕክቶቹ እዚህ ተሻሽለዋል)
+# 🔥 HANDLERS
 # ==========================================
 
-# 1. START ሲባል - ማራኪ አቀባበል እና ስልክ ቁጥር ጥያቄ
+# 1. START HANDLER
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     try:
         first_name = message.from_user.first_name if message.from_user.first_name else "ወዳጄ"
         
-        # ስልክ ቁጥር መጠየቂያ በተን (ትልቅና ግልጽ)
         markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-        # "ስልክ ቁጥር ላክ" የሚለውን ጽሁፍ ሳቢ አድርገነዋል
         phone_btn = KeyboardButton(text="📱 ለመመዝገብ ይህን ይጫኑ (Register)", request_contact=True)
         markup.add(phone_btn)
 
-        # 🔥 የተሻሻለ የእንኳን ደህና መጣችሁ ጽሁፍ 🔥
         msg = (
             f"👋 <b>ሰላም {first_name}!</b> እንኳን ወደ <b>AFRO GAMES</b> በደህና መጡ! 🇪🇹\n\n"
             f"🏆 እዚህ እጅግ አዝናኝ እና አትራፊ ጨዋታዎችን ያገኛሉ! \n"
@@ -77,7 +72,7 @@ def send_welcome(message):
     except Exception as e:
         print(e)
 
-# 2. ስልክ ቁጥር ሲላክ - ደማቅ አቀባበል እና ጨዋታው
+# 2. CONTACT HANDLER (Confirmation)
 @bot.message_handler(content_types=['contact'])
 def handle_contact(message):
     try:
@@ -89,7 +84,6 @@ def handle_contact(message):
             game_link = get_game_url(user_id, first_name, phone_number)
             wallet_link = get_wallet_url(user_id)
 
-            # የ Menu Button ማስተካከል
             try:
                 bot.set_chat_menu_button(
                     chat_id=message.chat.id,
@@ -97,32 +91,26 @@ def handle_contact(message):
                 )
             except: pass
 
-            # 🔥 የተሻሻሉ የውስጥ በተኖች (Inline Buttons) 🔥
             markup = InlineKeyboardMarkup()
-            # ዋናው የመጫወቻ በተን
             btn_play = InlineKeyboardButton("🎰 ወደ ጨዋታው ይግቡ (PLAY) 🎰", web_app=WebAppInfo(url=game_link))
             markup.row(btn_play)
-            
-            # ተጨማሪ አማራጮች
             markup.row(
                 InlineKeyboardButton("💰 ሂሳብ (Wallet)", web_app=WebAppInfo(url=wallet_link)), 
                 InlineKeyboardButton("📢 ቻናል (Join)", url=CHANNEL_LINK)
             )
             markup.row(InlineKeyboardButton("💬 እርዳታ (Support)", url=SUPPORT_USER))
 
-            # የድሮውን ኪቦርድ እናጥፋ
             remove_kb = telebot.types.ReplyKeyboardRemove()
             bot.send_message(message.chat.id, "✅ ምዝገባዎ ተሳክቷል!", reply_markup=remove_kb)
 
-            # 🔥 የተሻሻለ የማረጋገጫ መልዕክት 🔥
+            # 🔥 TEXT UPDATED TO 30 BIRR 🔥
             caption = (
                 f"🎉 <b>እንኳን ደስ አለዎት {first_name}!</b>\n\n"
                 f"✅ አካውንትዎ በተሳካ ሁኔታ ተከፍቷል!\n"
-                f"🎁 እንደ አዲስ ተመዝጋቢ <b>ነጻ 10 ብር ቦነስ</b> ተሰጥቶዎታል!\n\n"
+                f"🎁 እንደ አዲስ ተመዝጋቢ <b>ነጻ 30 ብር ቦነስ</b> ተሰጥቶዎታል!\n\n"
                 f"👇 <b>'ወደ ጨዋታው ይግቡ'</b> የሚለውን በመጫን አሁኑኑ መጫወት ይጀምሩ! መልካም እድል! 🍀"
             )
             
-            # ባነር ካለህ ፎቶውን ትልካለህ፣ ከሌለህ ዝም ብሎ ጽሁፉን መላክ ይቻላል
             try:
                 bot.send_photo(message.chat.id, BANNER_IMG, caption=caption, parse_mode="HTML", reply_markup=markup)
             except:
