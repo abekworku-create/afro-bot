@@ -13,7 +13,7 @@ TOKEN = '8570666490:AAHkzva23guJaWJRn2bUoV2ahI54T9PAtGs'
 DOMAIN = 'https://royalspin.wuaze.com'  
 CHANNEL_LINK = 'https://t.me/afro_game' 
 SUPPORT_USER = 'https://t.me/afro_game' 
-BANNER_IMG = "https://gemini.google.com/share/5537b2652ff2"
+BANNER_IMG = "https://gemini.google.com/share/9783d8a6f35a"
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
@@ -85,13 +85,13 @@ def send_main_menu(message):
 
 # --- START ---
 if __name__ == "__main__":
+    # Web Server ማስጀመር
     t = threading.Thread(target=run_web)
     t.start()
     
-    print("✅ Cleaning previous sessions...")
-    # 🔥 ይህ መስመር Webhookን በራሱ ጊዜ ያጠፋል (Conflict ያስወግዳል) 🔥
-    bot.delete_webhook() 
+    print("✅ Removing old webhooks...")
+    # 🔥 ይህ በጣም ወሳኝ ነው! የድሮውን Webhook በግድ ያጠፋዋል 🔥
+    bot.delete_webhook()
     
     print("✅ Production Bot Started...")
     bot.infinity_polling()
-
