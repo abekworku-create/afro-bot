@@ -10,7 +10,7 @@ from telebot.types import WebAppInfo, MenuButtonWebApp, InlineKeyboardMarkup, In
 # ==========================================
 # ⚙️ CONFIGURATION
 # ==========================================
-TOKEN = '8570666490:AAHkzva23guJaWJRn2bUoV2ahI54T9PAtGs' 
+TOKEN = '8570666490:AAH08os9NH0oBwYPFaZ49kVEY6e56lTn7hk' 
 DOMAIN = 'https://royalspin.wuaze.com'  
 CHANNEL_LINK = 'https://t.me/afro_game' 
 SUPPORT_USER = 'https://t.me/afro_game' 
@@ -97,3 +97,4 @@ if __name__ == "__main__":
     print("✅ Bot Started Successfully!")
     # infinity_polling ከተቋረጠ በራሱ እንዲነሳ (restart) ያደርገዋል
     bot.infinity_polling(timeout=10, long_polling_timeout=5)
+
