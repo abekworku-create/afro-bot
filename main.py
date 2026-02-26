@@ -10,7 +10,7 @@ from waitress import serve
 # ⚙️ CONFIGURATION
 # ==========================================
 TOKEN = '8570666490:AAH08os9NH0oBwYPFaZ49kVEY6e56lTn7hk' 
-DOMAIN = 'https://royalspin.wuaze.com' 
+DOMAIN = 'https://afrogames.et' 
 CHANNEL_LINK = 'https://t.me/afro_game'
 SUPPORT_USER = 'https://t.me/afro_game'
 BANNER_IMG = "https://gemini.google.com/share/508fab1dec30" 
@@ -121,3 +121,4 @@ if __name__ == "__main__":
     print(f"🚀 Bot is live on {WEBHOOK_URL_BASE}")
     port = int(os.environ.get('PORT', 8080))
     serve(app, host="0.0.0.0", port=port)
+
