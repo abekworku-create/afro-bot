@@ -13,6 +13,9 @@ TOKEN = '8570666490:AAH08os9NH0oBwYPFaZ49kVEY6e56lTn7hk'
 DOMAIN = 'https://afrogames.et' 
 CHANNEL_LINK = 'https://t.me/afro_game'
 SUPPORT_USER = 'https://t.me/afro_game'
+
+# ማሳሰቢያ፡ ይህ የ Gemini ሊንክ ቴሌግራም ላይ እንደ ፎቶ አይሰራም። 
+# በትክክል እንዲታይ ቀጥታ የፎቶ ሊንክ (ለምሳሌ .jpg የሚያልቅ) ወይም የቴሌግራም file_id መጠቀም አለብህ።
 BANNER_IMG = "https://gemini.google.com/share/508fab1dec30" 
 
 WEBHOOK_URL_BASE = "https://afro-bot.onrender.com" 
@@ -45,7 +48,7 @@ def get_wallet_url(user_id):
     return f"{DOMAIN}/wallet.php?tg_id={user_id}"
 
 # ==========================================
-# 🔥 HANDLERS (ጽሁፎቹ እንዳሉ ተጠብቀዋል)
+# 🔥 HANDLERS (አዲሱ የማስታወቂያ ፅሁፍ የገባበት)
 # ==========================================
 
 @bot.message_handler(commands=['start'])
@@ -57,11 +60,10 @@ def send_welcome(message):
     markup.add(phone_btn)
 
     msg = (
-        f"👋 <b>ሰላም {first_name}!</b> እንኳን ወደ <b>AFRO GAMES</b> በደህና መጡ! 🇪🇹\n\n"
-        f"🏆 እዚህ እጅግ አዝናኝ እና አትራፊ ጨዋታዎችን ያገኛሉ! \n"
-        f"🚀 <b>ዘመናዊ የቢንጎ ጌም </b>\n"
-        f"⚽ <b>Keno & Crush(Avaitor)</b>\n"
-        f"💣 <b>Mines</b> እና ሌሎችም...\n\n"
+        f"👋 <b>ሰላም {first_name}! እንኳን ወደ AFRO GAMES በደህና መጡ!</b> 🇪🇹\n\n"
+        f"እዚህ የብዙዎች ተወዳጅ በሆኑት ጨዋታዎች ዘና እያሉ የዕለቱ ትልቅ አሸናፊ ይሆናሉ!\n\n"
+        f"🎯 <b>ምን መጫወት ይፈልጋሉ?</b>\n"
+        f"በቦታችን ላይ <b>ቢንጎ (Bingo)፣ ክራሽ (Crash 🚀)፣ ማይን (Mine 💣) እና ኬኖ (Keno 🎱)</b> ይጠብቁዎታል።\n\n"
         f"🎁 <b>ለመጀመር አካውንት መክፈት ያስፈልግዎታል።</b>\n"
         f"ከታች ያለውን <b>'📱 ለመመዝገብ ይህን ይጫኑ'</b> የሚለውን በተን ይንኩ። 👇"
     )
@@ -100,9 +102,12 @@ def handle_contact(message):
 
     caption = (
         f"🎉 <b>እንኳን ደስ አለዎት {first_name}!</b>\n\n"
-        f"✅ አካውንትዎ በተሳካ ሁኔታ ተከፍቷል!\n"
-        f"🎁 እንደ አዲስ ተመዝጋቢ <b>ነጻ 30 ብር ቦነስ</b> ተሰጥቶዎታል!\n\n"
-        f"👇 <b>'ወደ ጨዋታው ይግቡ'</b> የሚለውን በመጫን አሁኑኑ መጫወት ይጀምሩ! መልካም እድል! 🍀"
+        f"✅ አካውንትዎ በተሳካ ሁኔታ ተከፍቷል! (እንደ አዲስ ተመዝጋቢ <b>ነጻ 30 ብር ቦነስ</b> ተሰጥቶዎታል! 🎁)\n\n"
+        f"💡 <b>እንዴት መጫወት ይቻላል?</b>\n"
+        f"<b>1. ዲፖዚት (Deposit):</b> በ<b>ቴሌብር (Telebirr)</b> የፈለጉትን የብር መጠን በሰከንዶች ውስጥ ያስገቡ።\n"
+        f"<b>2. ይጫወቱ:</b> ከሚወዱት ጨዋታ ውስጥ አንዱን መርጠው መጫወት ይጀምሩ።\n"
+        f"<b>3. አየር በአየር ያውጡ:</b> ያሸነፉትን ብር ወዲያውኑ ወደ ቴሌብርዎ ያስተላልፉ (100% አስተማማኝ!)\n\n"
+        f"👇 <b>'🎰 ወደ ጨዋታው ይግቡ (PLAY)'</b> የሚለውን በመጫን አሁኑኑ መጫወት ይጀምሩ! መልካም እድል! 🍀"
     )
     
     # ፎቶው ባይጫን እንኳን መልዕክቱ እንዲሄድ የተደረገ ጥንቃቄ
@@ -121,5 +126,3 @@ if __name__ == "__main__":
     print(f"🚀 Bot is live on {WEBHOOK_URL_BASE}")
     port = int(os.environ.get('PORT', 8080))
     serve(app, host="0.0.0.0", port=port)
-
-
